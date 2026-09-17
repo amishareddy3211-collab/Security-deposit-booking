@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Booking Confirmed - Refund</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#eef1f6;display:flex;justify-content:center;padding:10px}
+.main{max-width:440px;width:100%;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,.12)}
+.top{background:#0f172a;color:#fff;padding:20px;text-align:center}
+.card{padding:16px}
+.box{background:#0f172a;color:#fff;border-radius:14px;padding:14px;margin:12px 0}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;font-weight:900;cursor:pointer;margin-top:10px}
+.btn-green{background:#25D366;color:#fff}
+.btn-dark{background:#0f172a;color:#fff}
+.btn-light{background:#f1f5f9;color:#111;border:1px solid #e2e8f0}
+</style>
+</head>
+<body>
+<div class="main">
+<div class="top">
+<div style="font-size:10px;letter-spacing:2px;color:#94a3b8">BOOKING CONFIRMED</div>
+<h2>Security Deposit Received</h2>
+</div>
+<div class="card">
+<div style="text-align:center">
+<div style="width:64px;height:64px;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;margin:0 auto">✓</div>
+<h2 style="margin-top:10px">Payment Successful!</h2>
+<p style="font-size:12px;color:#666">₹9500 Verified</p>
+</div>
+<div class="box" id="details"></div>
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px;margin:12px 0">
+<div style="font-weight:900;font-size:12px;color:#15803d">FOR BOTH OF YOU - REFUND PROCESS</div>
+<div style="font-size:11px;margin-top:8px;line-height:1.6;color:#334155">
+✅ Service for both of you confirmed<br>
+✅ After service completion, you can checkout<br>
+✅ <b>₹9500 will be fully refunded</b> to your UPI ID / Number<br>
+✅ Refund in 2-4 hours after checkout
+</div>
+</div>
+<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:12px;display:flex;gap:10px;align-items:center">
+<img id="rqFinal" style="width:90px;height:90px;background:#fff;padding:4px;border-radius:8px;border:1px solid #eee">
+<div style="font-size:11px">Refund to:<br><b id="refundShow"></b></div>
+</div>
+<button class="btn btn-dark" onclick="alert('Checkout Request Sent! ₹9500 refund will be processed to: '+refund+' within 2-4 hours.');window.location.href='https://wa.me/919244907634?text='+encodeURIComponent('Checkout Request - Booking ID '+bid+' - Refund ₹9500 to '+refund);">✅ CHECKOUT AFTER SERVICE - GET REFUND</button>
+<a id="waBtn" href="https://wa.me/919244907634" style="display:block;background:#25D366;color:#fff;padding:14px;border-radius:12px;text-decoration:none;font-weight:900;margin-top:10px;text-align:center">💬 WhatsApp - 9244907634</a>
+<a href="index.html" style="display:block;background:#f1f5f9;color:#111;padding:14px;border-radius:12px;text-decoration:none;font-weight:800;margin-top:10px;text-align:center;border:1px solid #e2e8f0">← Back to Payment</a>
+</div>
+</div>
+<script>
+var p=new URLSearchParams(location.search);
+var bid=p.get('bid')||localStorage.getItem('sec_bid')||'SEC'+Date.now().toString().slice(-6);
+var refund=p.get('refund')||localStorage.getItem('sec_refund')||'Not Provided';
+document.getElementById('details').innerHTML="Booking ID: <b style='color:#22c55e'>"+bid+"</b><br>Deposit: ₹9500<br>Refund UPI/Number: <b>"+refund+"</b><br>Status: <span style='color:#22c55e'>Verified ✓</span>";
+document.getElementById('refundShow').innerText=refund;
+document.getElementById('rqFinal').src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+encodeURIComponent(refund);
+document.getElementById('waBtn').href="https://wa.me/919244907634?text="+encodeURIComponent("Hi, Payment Done ₹9500 - Booking ID "+bid+" - Refund to: "+refund);
+</script>
+</body></html>

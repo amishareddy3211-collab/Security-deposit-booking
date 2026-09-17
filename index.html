@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Secure Payment - Mini3D Mumbai Studio</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system}
+body{background:#f5f2ed;display:flex;justify-content:center;padding:12px}
+.box{max-width:440px;width:100%;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.15)}
+.head{background:linear-gradient(135deg,#111,#222);color:#fff;padding:24px;text-align:center}
+.badge{background:#7CFF7C;color:#111;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:900;display:inline-block;margin-top:10px;letter-spacing:.5px}
+.notice{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-left:4px solid #2e7d32;padding:16px;margin:16px;border-radius:0 14px 14px 0}
+.price{text-align:center;padding:12px 20px}
+.price h1{font-size:44px;margin:8px 0;font-weight:900;letter-spacing:-1px}
+.qrBox{background:#fffef5;border:2px dashed #ffcc8a;border-radius:20px;padding:20px;margin:16px;text-align:center}
+.qr{width:230px;height:230px;background:#fff;padding:10px;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.08);margin:0 auto;display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:18px 0}
+.pbtn{border:2px solid #eee;border-radius:14px;padding:14px 4px;text-align:center;cursor:pointer;font-weight:800;background:#fff;transition:.2s}
+.pbtn:active{transform:scale(.96)}
+.inp{width:100%;padding:14px;border:1.5px solid #e9e2d9;border-radius:12px;margin:8px 0;background:#fdfbf6;font-weight:600;font-size:14px}
+.btn{width:100%;padding:16px;background:#111;color:#fff;border:none;border-radius:12px;font-weight:900;cursor:pointer;margin-top:10px;font-size:15px;letter-spacing:.3px}
+.btn-green{background:#25D366}
+.upload{border:2px dashed #ffcc8a;background:#fff8f0;border-radius:14px;padding:20px;text-align:center;cursor:pointer;margin:12px 0;transition:.2s}
+.upload:hover{background:#fff4e6}
+.hide{display:none!important}
+.refund{background:#fff8e1;border:1px solid #ffe082;border-radius:16px;padding:16px;margin:16px}
+.dot{display:inline-block;width:8px;height:8px;background:#4caf50;border-radius:50%;margin-right:6px}
+</style>
+</head>
+<body>
+<div class="box">
+<div class="head">
+<div style="font-size:10px;letter-spacing:3px;color:#ffcc8a;font-weight:800">MUMBAI PREMIUM STUDIO</div>
+<h2 style="margin-top:8px;font-size:22px">Secure Payment Gateway</h2>
+<div style="font-size:11px;color:#aaa;margin-top:4px">Encrypted & Protected</div>
+<div class="badge">🛡️ 100% SECURE & REFUNDABLE DEPOSIT</div>
+</div>
+
+<div class="notice">
+<div style="font-weight:900;font-size:13px;color:#2e7d32"><span class="dot"></span>YOUR BOOKING DETAILS AFTER PAYMENT</div>
+<div style="font-size:12.5px;margin-top:10px;line-height:1.7;color:#333">
+<strong>Once your payment is completed, you will receive your complete booking details instantly.</strong><br><br>
+This amount is collected <b>only for security purpose.</b> We will not create any problem. Your deposit amount will be <b>properly refunded to your account</b> if any issue occurs or if you request cancellation.<br><br>
+<span style="background:#2e7d32;color:#fff;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:800">💯 REFUND GUARANTEED TO YOUR ACCOUNT</span>
+</div>
+</div>
+
+<div class="price">
+<div style="font-size:11px;color:#888;font-weight:800;letter-spacing:1px">YOU ARE PAYING - SECURITY DEPOSIT</div>
+<h1 id="amtTxt">₹300</h1>
+<div style="font-size:12px;color:#555">UPI ID: <b style="color:#111">sonali-5411@ptyes</b> <span onclick="navigator.clipboard.writeText('sonali-5411@ptyes');alert('UPI Copied: sonali-5411@ptyes')" style="background:#111;color:#fff;padding:4px 10px;border-radius:12px;font-size:10px;cursor:pointer;margin-left:6px">COPY</span></div>
+<div style="font-size:10px;color:#999;margin-top:6px">Mini3D Mumbai Studio - Official UPI</div>
+</div>
+
+<div class="qrBox">
+<div style="font-size:12px;font-weight:900;color:#ff6b35;letter-spacing:.5px">📱 SCAN TO PAY - AMOUNT AUTO FILLED</div>
+<img id="qr" class="qr" src="" alt="UPI QR Code">
+<div style="font-size:10px;color:#888;margin-top:10px">Amount will automatically appear in your UPI App</div>
+
+<div class="grid">
+<div class="pbtn" onclick="openPay('gpay')" style="border-color:#4285f4;color:#4285f4">
+<div style="font-size:22px;font-weight:900">G</div>
+<div style="font-size:11px">Google Pay</div>
+<div style="font-size:9px;color:#888;font-weight:600">Direct Open</div>
+</div>
+<div class="pbtn" onclick="openPay('phonepe')" style="border-color:#5f259f;color:#5f259f">
+<div style="font-size:22px;font-weight:900">Pe</div>
+<div style="font-size:11px">PhonePe</div>
+<div style="font-size:9px;color:#888;font-weight:600">Direct Open</div>
+</div>
+<div class="pbtn" onclick="openPay('paytm')" style="border-color:#00baf2;color:#00baf2">
+<div style="font-size:22px;font-weight:900">Paytm</div>
+<div style="font-size:11px">Paytm</div>
+<div style="font-size:9px;color:#888;font-weight:600">Direct Open</div>
+</div>
+</div>
+
+<button class="btn" onclick="openPay('upi')" style="background:linear-gradient(135deg,#ff6b35,#ff8e3c)">💳 PAY ₹<span id="btnAmt">300</span> NOW - OPEN UPI APP</button>
+<div style="font-size:10px;color:#999;margin-top:8px;text-align:center">One Click - Your Google Pay / PhonePe / Paytm Will Open Directly With Amount</div>
+</div>
+
+<div style="padding:0 16px">
+<label style="font-size:11px;font-weight:800;color:#666;letter-spacing:.5px">UPLOAD PAYMENT SCREENSHOT *</label>
+<div class="upload" onclick="document.getElementById('file1').click()">
+<div style="font-size:28px">💳</div>
+<b style="font-size:14px">Upload Payment Screenshot</b>
+<div style="font-size:11px;color:#888;margin-top:4px">After payment - Upload screenshot for verification</div>
+<input type="file" id="file1" accept="image/*" class="hide" onchange="showSS(this)">
+</div>
+<img id="prev1" class="hide" style="width:100%;
